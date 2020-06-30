@@ -7,30 +7,43 @@
 import Vue from 'vue';
 import axios from 'axios';
 
+// import { Message } from 'element-ui';
+import cookie from './cookie';
+
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || '',
-  // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
+  baseURL: process.env.baseURL || process.env.apiUrl || '',
+  timeout: 5 * 1000, // Timeout
+  withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
 
+// request拦截器
 _axios.interceptors.request.use(
-  (config) =>
-    // Do something before request is sent
-    config,
-  (error) =>
-    // Do something with request error
-    Promise.reject(error),
-
+  // (config) =>
+  //   // Do something before request is sent
+  //   config,
+  // (error) =>
+  //   // Do something with request error
+  //   Promise.reject(error),
+  (config) => {
+    // console.log(config);
+    if (cookie.getCookie('token')) {
+      config.headers['x-auth-token'] = cookie.getCookie('token'); // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    }
+    return config;
+  }, (error) => {
+    Promise.reject(error);
+  },
 );
 
 // Add a response interceptor
+// responose拦截器
 _axios.interceptors.response.use(
   (response) =>
     // Do something with response data
