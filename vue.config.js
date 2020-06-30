@@ -15,7 +15,11 @@ module.exports = {
       console.log(config.mode);
     }
   }, */
-  // outputDir: 'dist',
+  // BASE_URL: process.env.NODE_ENV === 'production'
+  //   ? '/water-environment-end/public/'
+  //   : '/water-environment-end/public/',
+  outputDir: 'dist',
+  assetsDir: './',
   devServer: {
     host: '10.10.10.61',
     port: '8000',
@@ -35,7 +39,7 @@ module.exports = {
     },
     // proxy: 'http://pcm.web:8080',
   },
-  // publicPath: process.env.NODE_ENV === 'production'
-  //   ? 'http://10.10.10.61:8080/'
-  //   : 'http://10.10.10.61:8080/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? './'
+    : '/',
 };

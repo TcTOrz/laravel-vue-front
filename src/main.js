@@ -5,6 +5,9 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import './plugins/element';
+import _global from './plugins/global';
+
+Vue.prototype.GLOBAL = _global;
 
 Vue.config.productionTip = false;
 

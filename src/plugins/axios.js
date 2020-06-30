@@ -32,7 +32,7 @@ _axios.interceptors.request.use(
   //   // Do something with request error
   //   Promise.reject(error),
   (config) => {
-    // console.log(config);
+    console.log(config);
     if (cookie.getCookie('token')) {
       config.headers['x-auth-token'] = cookie.getCookie('token'); // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
     }
@@ -45,12 +45,14 @@ _axios.interceptors.request.use(
 // Add a response interceptor
 // responose拦截器
 _axios.interceptors.response.use(
-  (response) =>
+  (response) => {
+    console.log(response);
     // Do something with response data
-    response,
-  (error) =>
+    return response;
+  }, (error) => {
     // Do something with response error
-    Promise.reject(error),
+    Promise.reject(error);
+  },
 
 );
 

@@ -27,8 +27,8 @@
 
 <script>
 // import axios from '@/plugins/axios';
-// import cookie from '@/plugins/cookie';
-// import { Message , Loading } from 'element-ui';
+import cookie from '@/plugins/cookie';
+import { Message, Loading } from 'element-ui';
 
 export default {
   data() {
@@ -63,12 +63,12 @@ export default {
       // let _this = this;
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // Loading.service({ fullscreen: true });
+          Loading.service({ fullscreen: true });
           const { email, password, captcha } = this.loginForm;
           const auth = this.$route.query.auth ? this.$route.query.auth : '';
           this.$axios({
             method: 'post',
-            url: '/login',
+            url: `${this.GLOBAL.BASE_API}login`,
             headers: {
               'x-auth-uuid': this.text,
             },
@@ -79,7 +79,19 @@ export default {
               auth,
             },
           }).then((res) => {
-            console.log(res);
+            if (res.data.code === 200) {
+              cookie.setCookie('token', res.data.data.token);
+              cookie.setCookie('hid', res.data.data.hid);
+            }
+            Message({
+              message: '登陆成功',
+              type: 'success',
+              duration: 5 * 1000,
+            });
+            this.$router.push(this.$route.query.redirect || '/');
+            const loadingInstance = Loading.service({ fullscreen: true });
+            loadingInstance.close();
+            // console.log(res);
           });
           // console.log(this.$route);
           // alert(this.$route);
@@ -101,15 +113,19 @@ export default {
       this.text = text;
     },
     initCaptcha() {
+      // console.log(this.GLOBAL.BASE_API);
+      // console.log(`${process.env.BASE_URL}/captcha?uuid=${this.text}`);
       // this.captchaSrc = `${process.env.BASE_URL}/captcha?uuid=${this.text}`;
-      this.captchaSrc = `http://127.0.0.1:8080/captcha?uuid=${this.text}`;
+      this.captchaSrc = `${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     getCaptcha() {
       this.makeId();
+      console.log(this.GLOBAL.BASE_API);
+      // console.log(`${process.env.BASE_URL}/captcha?uuid=${this.text}`);
       // this.captchaSrc = `${process.env.BASE_API}/captcha?uuid=${this.text}`;
-      this.captchaSrc = `http://127.0.0.1:8080/captcha?uuid=${this.text}`;
+      this.captchaSrc = `${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
       // this.captchaSrc = `${process.env.BASE_URL}/captcha?uuid=${this.text}`;
-      console.log(this.captchaSrc);
+      // console.log(this.captchaSrc);
     },
   },
   mounted() {
