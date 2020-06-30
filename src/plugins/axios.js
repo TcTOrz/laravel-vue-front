@@ -7,7 +7,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-// import { Message } from 'element-ui';
+import { Message } from 'element-ui';
 import cookie from './cookie';
 
 // Full config:  https://github.com/axios/axios#request-config
@@ -46,11 +46,31 @@ _axios.interceptors.request.use(
 // responose拦截器
 _axios.interceptors.response.use(
   (response) => {
-    console.log(response);
+    const { code, message } = response.data;
+    // console.log(code, message);
+    if (code !== 0) {
+      // console.log('111');
+      // this.$router.push('/login');
+      // location.href = '/login';
+      // return false;
+    }
+    if (code !== 0 && code !== 200) {
+      Message({
+        message,
+        type: 'error',
+        duration: 5 * 1000,
+      });
+      // return false;
+    }
     // Do something with response data
     return response;
   }, (error) => {
     // Do something with response error
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000,
+    });
     Promise.reject(error);
   },
 

@@ -25,8 +25,11 @@ module.exports = {
     port: '8000',
     open: true,
     proxy: {
-      // eslint-disable-next-line quotes
-      "/login": {
+      '/captcha': {
+        target: 'http://127.0.0.1:80',
+        changeOrigin: true,
+      },
+      '/login': {
         target: 'http://127.0.0.1:80',
         changeOrigin: true,
         // secure: false,
@@ -35,6 +38,10 @@ module.exports = {
         //   // eslint-disable-next-line quotes
         //   "^/api": "/",
         // },
+      },
+      '*': {
+        target: 'http://127.0.0.1:80',
+        changeOrigin: true,
       },
     },
     // proxy: 'http://pcm.web:8080',
