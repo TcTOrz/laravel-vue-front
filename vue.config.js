@@ -18,35 +18,21 @@ module.exports = {
   // BASE_URL: process.env.NODE_ENV === 'production'
   //   ? '/water-environment-end/public/'
   //   : '/water-environment-end/public/',
-  outputDir: 'dist',
-  assetsDir: './',
+  // outputDir: 'dist',
+  // assetsDir: './',
   devServer: {
     host: '10.10.10.61',
     port: '8000',
     open: true,
     proxy: {
+      // 没有运行在同一台主机上。
       '/captcha': {
         target: 'http://127.0.0.1:80',
         changeOrigin: true,
       },
-      '/login': {
-        target: 'http://127.0.0.1:80',
-        changeOrigin: true,
-        // secure: false,
-        // changeOrigin: true,
-        // pathRewrite: {
-        //   // eslint-disable-next-line quotes
-        //   "^/api": "/",
-        // },
-      },
-      '*': {
-        target: 'http://127.0.0.1:80',
-        changeOrigin: true,
-      },
     },
-    // proxy: 'http://pcm.web:8080',
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? './'
+    ? './' // /water-environment-front/dist
     : '/',
 };

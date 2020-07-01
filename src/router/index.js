@@ -29,8 +29,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  // mode: 'history',
-  // base: '/pages/', // process.env.BASE_URL,
+  mode: 'history',
+  base: process.env.BASE_URL, // '/dist'
   routes,
 });
 

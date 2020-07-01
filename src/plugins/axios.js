@@ -10,18 +10,26 @@ import axios from 'axios';
 import { Message } from 'element-ui';
 import cookie from './cookie';
 
+import GLOBAL from './global';
+
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const config = {
-  baseURL: process.env.baseURL || process.env.apiUrl || '',
+  // baseURL: 'http://pcm.web:8080', // process.env.baseURL || process.env.apiUrl || '',
+  baseURL: GLOBAL.BASE_URL, // 'http://127.0.0.1:8080',
   timeout: 5 * 1000, // Timeout
-  withCredentials: true, // Check cross-site Access-Control
+  withCredentials: false, // Check cross-site Access-Control
+  // headers: { 'Content-Type': 'Access-C/ontrol-Allow-Origin' },
 };
 
 const _axios = axios.create(config);
+
+// axios.defaults.baseURL = 'http://pcm.web:8080';
+
+// const _axios = axios;
 
 // request拦截器
 _axios.interceptors.request.use(

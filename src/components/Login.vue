@@ -114,19 +114,11 @@ export default {
       this.text = text;
     },
     initCaptcha() {
-      // console.log(this.GLOBAL.BASE_API);
-      // console.log(`${process.env.BASE_URL}/captcha?uuid=${this.text}`);
-      // this.captchaSrc = `${process.env.BASE_URL}/captcha?uuid=${this.text}`;
-      this.captchaSrc = `${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     getCaptcha() {
       this.makeId();
-      // console.log(this.GLOBAL.BASE_API);
-      // console.log(`${process.env.BASE_URL}/captcha?uuid=${this.text}`);
-      // this.captchaSrc = `${process.env.BASE_API}/captcha?uuid=${this.text}`;
-      this.captchaSrc = `${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
-      // this.captchaSrc = `${process.env.BASE_URL}/captcha?uuid=${this.text}`;
-      // console.log(this.captchaSrc);
+      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
   },
   mounted() {
