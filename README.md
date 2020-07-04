@@ -27,3 +27,15 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### docker部署
+
+```sh
+
+# 构建
+docker build . -t my-app
+
+# 运行 http://127.0.0.1:8000/login
+docker run -d -p 8000:80 my-app
+
+```
