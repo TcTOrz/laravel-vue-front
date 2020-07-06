@@ -4,6 +4,7 @@
     <router-link to="/login">Go to Home</router-link>
     <el-button type="primary" @click="test()">go login</el-button>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ val }}
   </div>
 </template>
 
@@ -16,7 +17,23 @@ export default {
   components: {
     HelloWorld,
   },
+  data() {
+    return {
+      val: 'origin',
+    };
+  },
+  mounted() {
+    this.getTest();
+  },
   methods: {
+    getTest() {
+      this.$axios({
+        method: 'get',
+        url: `${this.GLOBAL.BASE_API}api/val`,
+      }).then((res) => {
+        this.val = res.data;
+      });
+    },
     test() {
       this.$router.push('/login');
     },

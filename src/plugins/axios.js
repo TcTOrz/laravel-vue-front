@@ -8,6 +8,7 @@ import Vue from 'vue';
 import axios from 'axios';
 
 import { Message } from 'element-ui';
+import router from '../router';
 import cookie from './cookie';
 
 import GLOBAL from './global';
@@ -40,10 +41,10 @@ _axios.interceptors.request.use(
   //   // Do something with request error
   //   Promise.reject(error),
   (config) => {
-    console.log(config);
     if (cookie.getCookie('token')) {
       config.headers['x-auth-token'] = cookie.getCookie('token'); // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
     }
+    // console.log(config);
     return config;
   }, (error) => {
     Promise.reject(error);
@@ -56,19 +57,16 @@ _axios.interceptors.response.use(
   (response) => {
     const { code, message } = response.data;
     // console.log(code, message);
-    if (code !== 0) {
-      // console.log('111');
-      // this.$router.push('/login');
-      // location.href = '/login';
-      // return false;
-    }
     if (code !== 0 && code !== 200) {
       Message({
         message,
         type: 'error',
         duration: 5 * 1000,
       });
-      // return false;
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+      return false;
     }
     // Do something with response data
     return response;
