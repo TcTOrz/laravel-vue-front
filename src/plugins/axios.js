@@ -7,7 +7,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-import { Message } from 'element-ui';
+import { Message, Loading } from 'element-ui';
 import router from '../router';
 import cookie from './cookie';
 
@@ -63,6 +63,8 @@ _axios.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000,
       });
+      const loadingInstance = Loading.service({ fullscreen: true });
+      loadingInstance.close();
       setTimeout(() => {
         router.push('/login');
       }, 2000);
