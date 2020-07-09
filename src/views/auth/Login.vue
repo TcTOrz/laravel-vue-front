@@ -1,6 +1,8 @@
 <template>
   <div>
     <login-component></login-component>
+    没有账号？
+    <router-link to="/register">注册</router-link>
   </div>
 </template>
 

@@ -27,6 +27,7 @@ const routes = [
     path: '/', name: 'Home', meta: { auth: true }, component: Home,
   },
   { path: '/login', name: 'Login', component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue') },
+  { path: '/register', name: 'Register', component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register.vue') },
   { path: '*', name: '404', component: () => import(/* webpackChunkName: "404" */ '../views/error/404.vue') },
 ];
 
