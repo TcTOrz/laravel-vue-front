@@ -97,7 +97,7 @@ export default {
     },
     submitRegister(name, email, password, captcha) {
       this.axios({
-        method: 'get',
+        method: 'post',
         url: `${this.GLOBAL.BASE_API}register`,
         headers: {
           'x-auth-uuid': this.text,
