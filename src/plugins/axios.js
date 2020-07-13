@@ -63,13 +63,13 @@ _axios.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000,
       });
-      const loadingInstance = Loading.service({ fullscreen: true });
-      loadingInstance.close();
       // setTimeout(() => {
       //   router.push('/login');
       // }, 2000);
       return response;
     }
+    const loadingInstance = Loading.service({ fullscreen: true });
+    loadingInstance.close();
     // Do something with response data
     return response;
   }, (error) => {
