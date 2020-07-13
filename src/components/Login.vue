@@ -79,8 +79,7 @@ export default {
               auth,
             },
           }).then((res) => {
-            // console.log(res);
-            if (res.data.code === 200 && res.data.data.code !== 0) {
+            if (res.data.code === 200) {
               cookie.setCookie('token', res.data.data.token);
               cookie.setCookie('hid', res.data.data.hid);
               this.$router.push(this.$route.query.redirect || '/');
@@ -90,8 +89,8 @@ export default {
                 duration: 5 * 1000,
               });
             }
-            const loadingInstance = Loading.service({ fullscreen: true });
-            loadingInstance.close();
+            // const loadingInstance = Loading.service({ fullscreen: true });
+            // loadingInstance.close();
             // console.log(res);
           });
           // console.log(this.$route);

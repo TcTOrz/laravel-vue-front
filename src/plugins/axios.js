@@ -65,10 +65,10 @@ _axios.interceptors.response.use(
       });
       const loadingInstance = Loading.service({ fullscreen: true });
       loadingInstance.close();
-      setTimeout(() => {
-        router.push('/login');
-      }, 2000);
-      return false;
+      // setTimeout(() => {
+      //   router.push('/login');
+      // }, 2000);
+      return response;
     }
     // Do something with response data
     return response;

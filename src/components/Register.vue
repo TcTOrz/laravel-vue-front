@@ -118,12 +118,6 @@ export default {
             type: 'success',
             duration: 5 * 1000,
           });
-        } else {
-          Message({
-            message: res.data.message,
-            type: 'error',
-            duration: 5 * 1000,
-          });
         }
       });
     },
