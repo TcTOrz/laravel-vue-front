@@ -112,13 +112,15 @@ export default {
         if (res.data.code === 200) {
           cookie.setCookie('token', res.data.data.token);
           cookie.setCookie('hid', res.data.data.hid);
-          // this.$router.push(this.$route.query.redirect || '/');
           Message({
             message: '注册成功, 请激活邮箱后登录',
             type: 'success',
             duration: 5 * 1000,
           });
+          this.$router.push('/login');
         }
+        const loadingInstance = Loading.service({ fullscreen: true });
+        loadingInstance.close();
       });
     },
     submitForm(formName) {

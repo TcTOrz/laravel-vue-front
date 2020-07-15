@@ -21,6 +21,10 @@
         <el-button @click="resetForm('loginForm')">重置</el-button>
       </el-form-item>
     </el-form>
+
+    <a href="http://127.0.0.1:9000/auth/github">
+      <el-button type="success" class="login github_login">Github登录</el-button>
+    </a>
   </div>
 </div>
 </template>
@@ -89,8 +93,8 @@ export default {
                 duration: 5 * 1000,
               });
             }
-            // const loadingInstance = Loading.service({ fullscreen: true });
-            // loadingInstance.close();
+            const loadingInstance = Loading.service({ fullscreen: true });
+            loadingInstance.close();
             // console.log(res);
           });
           // console.log(this.$route);

@@ -57,6 +57,8 @@ _axios.interceptors.response.use(
   (response) => {
     const { code, message } = response.data;
     // console.log(code, message);
+    // const loadingInstance = Loading.service({ fullscreen: true });
+    // loadingInstance.close();
     if (code !== 0 && code !== 200) {
       Message({
         message,
@@ -68,12 +70,14 @@ _axios.interceptors.response.use(
       // }, 2000);
       return response;
     }
-    const loadingInstance = Loading.service({ fullscreen: true });
-    loadingInstance.close();
+    // const loadingInstance = Loading.service({ fullscreen: true });
+    // loadingInstance.close();
     // Do something with response data
     return response;
   }, (error) => {
     // Do something with response error
+    // const loadingInstance = Loading.service({ fullscreen: true });
+    // loadingInstance.close();
     Message({
       message: error.message,
       type: 'error',
