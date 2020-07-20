@@ -1,3 +1,12 @@
+<!--
+ * @Author: Li Jian
+ * @Date: 2020-07-20 12:06:38
+ * @LastEditTime: 2020-07-20 13:49:51
+ * @LastEditors: Li Jian
+ * @Description:
+ * @FilePath: /water-environment-front/src/views/Home.vue
+ * @Motto: MMMMMMMM
+-->
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
@@ -11,6 +20,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
+// import cookie from '@/plugins/cookie';
 
 export default {
   name: 'Home',
@@ -24,8 +34,21 @@ export default {
   },
   mounted() {
     this.getTest();
+    // this.syncAuth();
   },
   methods: {
+    // syncAuth() {
+    //   const token = this.$route.query.secret;
+    //   const hid = this.$route.query.secretId;
+    //   console.log(token, hid);
+    //   if (token && hid) {
+    //     cookie.setCookie('token', token);
+    //     cookie.setCookie('hid', hid);
+    //     this.$router.push({
+    //       path: '/',
+    //     });
+    //   }
+    // },
     getTest() {
       this.$axios({
         method: 'get',

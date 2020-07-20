@@ -1,3 +1,12 @@
+/*
+ * @Author: Li Jian
+ * @Date: 2020-07-20 13:54:18
+ * @LastEditTime: 2020-07-20 13:54:19
+ * @LastEditors: Li Jian
+ * @Description:
+ * @FilePath: /water-environment-front/src/router/index.js
+ * @Motto: MMMMMMMM
+ */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import cookie from '../plugins/cookie';
@@ -28,6 +37,7 @@ const routes = [
   },
   { path: '/login', name: 'Login', component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue') },
   { path: '/register', name: 'Register', component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register.vue') },
+  { path: '/new/login', name: 'AuthLoginRedirect', component: () => import(/* webpackChunkName: "loginredirect" */ '../views/auth/Redirect.vue') },
   { path: '*', name: '404', component: () => import(/* webpackChunkName: "404" */ '../views/error/404.vue') },
 ];
 
