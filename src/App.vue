@@ -1,3 +1,12 @@
+<!--
+ * @Author: Li Jian
+ * @Date: 2020-07-29 15:00:46
+ * @LastEditTime: 2020-07-29 15:00:47
+ * @LastEditors: Li Jian
+ * @Description:
+ * @FilePath: /water-environment-front/src/App.vue
+ * @Motto: MMMMMMMM
+-->
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">
@@ -18,7 +27,6 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
-
 export default {
   name: 'app',
   components: {
@@ -31,11 +39,9 @@ export default {
 body {
   margin: 0;
 }
-
 #app {
   height: 100%;
 }
-
 /* #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

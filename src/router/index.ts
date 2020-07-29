@@ -1,14 +1,14 @@
 /*
  * @Author: Li Jian
  * @Date: 2020-07-20 13:54:18
- * @LastEditTime: 2020-07-21 09:27:44
+ * @LastEditTime: 2020-07-29 15:22:30
  * @LastEditors: Li Jian
  * @Description:
- * @FilePath: /water-environment-front/src/router/index.js
+ * @FilePath: /water-environment-front/src/router/index.ts
  * @Motto: MMMMMMMM
  */
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import VueRouter, { RouteConfig } from 'vue-router';
 import cookie from '../plugins/cookie';
 import Home from '../views/Home.vue';
 // import Login from '../views/auth/Login.vue';
@@ -31,7 +31,7 @@ Vue.use(VueRouter);
 //   },
 // ];
 
-const routes = [
+const routes: Array<RouteConfig> = [
   {
     path: '/', name: 'Home', meta: { auth: true }, component: Home,
   },

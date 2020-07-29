@@ -1,7 +1,7 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-20 12:06:38
- * @LastEditTime: 2020-07-20 13:49:51
+ * @LastEditTime: 2020-07-29 17:31:40
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/Home.vue
@@ -50,6 +50,7 @@ export default {
     //   }
     // },
     getTest() {
+      // console.log(this.$axios);
       this.$axios({
         method: 'get',
         url: `${this.GLOBAL.BASE_API}api/val`,

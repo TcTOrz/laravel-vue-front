@@ -7,12 +7,88 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-import { Message, Loading } from 'element-ui';
-import router from '../router';
+import { Message } from 'element-ui';
+// import router from '../router';
 import cookie from './cookie';
 
 import GLOBAL from './global';
 
+/**
+ * 封装axios
+ */
+// class Request {
+//   private axios: AxiosInstance;
+
+//   public constructor() {
+//     const config = {
+//       baseURL: GLOBAL.BASE_URL, // 'http://127.0.0.1:8080',
+//       timeout: 5 * 1000, // Timeout
+//       withCredentials: false, // Check cross-site Access-Control
+//     };
+//     this.axios = axios.create(config);
+//     this.axios.interceptors.request.use(
+//       (config) => {
+//         if (cookie.getCookie('token')) {
+//           config.headers['x-auth-token'] = cookie.getCookie('token');
+// 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+//         }
+//         // console.log(config);
+//         return config;
+//       }, (error) => {
+//         Promise.reject(error);
+//       },
+//     );
+//     this.axios.interceptors.response.use(
+//       (response) => {
+//         const { code, message } = response.data;
+//         if (code !== 0 && code !== 200) {
+//           Message({
+//             message,
+//             type: 'error',
+//             duration: 5 * 1000,
+//           });
+//           return response;
+//         }
+//         // Do something with response data
+//         return response;
+//       }, (error) => {
+//         // Do something with response error
+//         Message({
+//           message: error.message,
+//           type: 'error',
+//           duration: 5 * 1000,
+//         });
+//         Promise.reject(error);
+//       },
+//     );
+//     (Plugin as any).install = function (Vue:any, options:any) {
+//       Vue.axios = this.axios;
+//       (window as any).axios = this.axios;
+//       Object.defineProperties(Vue.prototype, {
+//         axios: {
+//           get() {
+//             return this.axios;
+//           },
+//         },
+//         $axios: {
+//           get() {
+//             return this.axios;
+//           },
+//         },
+//       });
+//     };
+//     Vue.use((Plugin as any));
+//   }
+// }
+
+// export default Request;
+// export const createRequest = () => new Request();
+
+// declare module 'vue/types/options' {
+//   interface ComponentOptions<V extends Vue> {
+//     request?: Request
+//   }
+// }
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -88,9 +164,9 @@ _axios.interceptors.response.use(
 
 );
 
-Plugin.install = function (Vue, options) {
+(Plugin as any).install = function (Vue:any, options:any) {
   Vue.axios = _axios;
-  window.axios = _axios;
+  (window as any).axios = _axios;
   Object.defineProperties(Vue.prototype, {
     axios: {
       get() {
@@ -105,6 +181,6 @@ Plugin.install = function (Vue, options) {
   });
 };
 
-Vue.use(Plugin);
+Vue.use((Plugin as any));
 
 export default Plugin;
