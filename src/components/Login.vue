@@ -29,17 +29,19 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 // import axios from '@/plugins/axios';
 import cookie from '@/plugins/cookie';
 import { Message, Loading } from 'element-ui';
 
-export default {
+export default Vue.extend({
   data() {
     return {
       loginForm: {
         email: '',
         password: '',
+        captcha: '',
       },
       rules: {
         email: [
@@ -63,16 +65,16 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
+    submitForm(formName:string):void {
       // let _this = this;
-      this.$refs[formName].validate((valid) => {
+      (this.$refs[formName] as any).validate((valid:boolean) => {
         if (valid) {
           Loading.service({ fullscreen: true });
           const { email, password, captcha } = this.loginForm;
           const auth = this.$route.query.auth ? this.$route.query.auth : '';
-          this.$axios({
+          (this as any).$axios({
             method: 'post',
-            url: `${this.GLOBAL.BASE_API}login`,
+            url: `${(this as any).GLOBAL.BASE_API}login`,
             headers: {
               'x-auth-uuid': this.text,
             },
@@ -82,11 +84,11 @@ export default {
               captcha,
               auth,
             },
-          }).then((res) => {
+          }).then((res:any) => {
             if (res.data.code === 200) {
               cookie.setCookie('token', res.data.data.token);
               cookie.setCookie('hid', res.data.data.hid);
-              this.$router.push(this.$route.query.redirect || '/');
+              this.$router.push((this as any).$route.query.redirect || '/');
               Message({
                 message: '登陆成功',
                 type: 'success',
@@ -105,8 +107,8 @@ export default {
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    resetForm(formName:string):void {
+      (this.$refs[formName] as any).resetFields();
     },
     makeId() {
       let text = '';
@@ -117,16 +119,16 @@ export default {
       this.text = text;
     },
     initCaptcha() {
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     getCaptcha() {
       this.makeId();
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
   },
   mounted() {
     this.makeId();
     this.initCaptcha();
   },
-};
+});
 </script>

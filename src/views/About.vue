@@ -1,3 +1,12 @@
+<!--
+ * @Author: Li Jian
+ * @Date: 2020-07-30 09:31:46
+ * @LastEditTime: 2020-07-30 09:59:29
+ * @LastEditors: Li Jian
+ * @Description:
+ * @FilePath: /water-environment-front/src/views/About.vue
+ * @Motto: MMMMMMMM
+-->
 <template>
   <div class="about">
     <h1>This is an about page</h1>
@@ -6,8 +15,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'About',
   data() {
     return {
@@ -15,5 +26,5 @@ export default {
       value1: 0,
     };
   },
-};
+});
 </script>

@@ -1,7 +1,7 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-29 15:00:46
- * @LastEditTime: 2020-07-29 15:00:47
+ * @LastEditTime: 2020-07-30 09:33:09
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/App.vue
@@ -25,14 +25,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 // import HelloWorld from './components/HelloWorld.vue';
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
     // HelloWorld,
   },
-};
+});
 </script>
 
 <style>

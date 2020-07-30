@@ -1,7 +1,7 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-21 09:30:51
- * @LastEditTime: 2020-07-21 09:57:19
+ * @LastEditTime: 2020-07-30 09:58:43
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/auth/Verify.vue
@@ -31,11 +31,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import cookie from '@/plugins/cookie';
 import { Message, Loading } from 'element-ui';
+// import { Component } from 'vue-property-decorator';
 
-export default {
+export default Vue.extend({
   data() {
     return {
       loginForm: {
@@ -73,12 +75,12 @@ export default {
     },
     /** 初始化验证码 */
     initCaptcha() {
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     /** 点击获取新的验证码 */
     getCaptcha() {
       this.makeId();
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     makeId() {
       let text = '';
@@ -88,15 +90,16 @@ export default {
       }
       this.text = text;
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm(formName:string) {
+      // this = (this as any);
+      (this.$refs[formName] as any).validate((valid:boolean) => {
         if (valid) {
           Loading.service({ fullscreen: true });
           const { email, password, captcha } = this.loginForm;
           const auth = this.$route.query.auth ? this.$route.query.auth : '';
-          this.axios({
+          (this as any).axios({
             method: 'POST',
-            url: `${this.GLOBAL.BASE_API}login`,
+            url: `${(this as any).GLOBAL.BASE_API}login`,
             headers: {
               'x-auth-uuid': this.text,
             },
@@ -106,12 +109,12 @@ export default {
               captcha,
               auth,
             },
-          }).then((res) => {
-            console.log(res);
+          }).then((res:any) => {
+            // console.log(res);
             if (res.data.code === 200) {
               cookie.setCookie('token', res.data.data.token);
               cookie.setCookie('hid', res.data.data.hid);
-              this.$router.push(this.$route.query.redirect || '/');
+              this.$router.push((this as any).$route.query.redirect || '/');
               Message({
                 message: '登陆成功',
                 type: 'success',
@@ -128,5 +131,5 @@ export default {
       });
     },
   },
-};
+});
 </script>

@@ -1,7 +1,7 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-20 12:06:38
- * @LastEditTime: 2020-07-29 17:31:40
+ * @LastEditTime: 2020-07-30 10:00:21
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/Home.vue
@@ -17,12 +17,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
 // import cookie from '@/plugins/cookie';
 
-export default {
+export default Vue.extend({
   name: 'Home',
   components: {
     HelloWorld,
@@ -51,10 +52,10 @@ export default {
     // },
     getTest() {
       // console.log(this.$axios);
-      this.$axios({
+      (this as any).$axios({
         method: 'get',
-        url: `${this.GLOBAL.BASE_API}api/val`,
-      }).then((res) => {
+        url: `${(this as any).GLOBAL.BASE_API}api/val`,
+      }).then((res:any) => {
         this.val = res.data;
       });
     },
@@ -62,5 +63,5 @@ export default {
       this.$router.push('/login');
     },
   },
-};
+});
 </script>

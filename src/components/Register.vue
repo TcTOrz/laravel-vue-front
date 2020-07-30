@@ -26,16 +26,17 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import cookie from '@/plugins/cookie';
 import { Message, Loading } from 'element-ui';
 
-export default {
+export default Vue.extend({
   data() {
-    const validatePass2 = (rule, value, callback) => {
+    const validatePass2 = (rule:any, value:string, callback:any) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
-      } else if (value !== this.registerForm.password) {
+      } else if (value !== (this as any).registerForm.password) {
         callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
@@ -89,16 +90,16 @@ export default {
       this.text = text;
     },
     initCaptcha() {
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
     getCaptcha() {
       this.makeId();
-      this.captchaSrc = `${this.GLOBAL.BASE_URL}${this.GLOBAL.BASE_API}captcha?uuid=${this.text}`;
+      this.captchaSrc = `${(this as any).GLOBAL.BASE_URL}${(this as any).GLOBAL.BASE_API}captcha?uuid=${this.text}`;
     },
-    submitRegister(name, email, password, captcha) {
-      this.axios({
+    submitRegister(name:string, email:string, password:string, captcha:string):void {
+      (this as any).axios({
         method: 'post',
-        url: `${this.GLOBAL.BASE_API}register`,
+        url: `${(this as any).GLOBAL.BASE_API}register`,
         headers: {
           'x-auth-uuid': this.text,
         },
@@ -108,7 +109,7 @@ export default {
           password,
           captcha,
         },
-      }).then((res) => {
+      }).then((res:any) => {
         if (res.data.code === 200) {
           cookie.setCookie('token', res.data.data.token);
           cookie.setCookie('hid', res.data.data.hid);
@@ -123,8 +124,8 @@ export default {
         loadingInstance.close();
       });
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm(formName:string):void {
+      (this.$refs[formName] as any).validate((valid:boolean) => {
         if (valid) {
           Loading.service({ fullscreen: true });
           this.submitRegister(this.registerForm.name,
@@ -139,5 +140,5 @@ export default {
       });
     },
   },
-};
+});
 </script>
