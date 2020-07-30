@@ -1,8 +1,9 @@
 <template>
-<div style="width: 50%">
-  <h2>登录</h2>
+<div>
+  <h1>login</h1>
   <div>
-    <el-form :model="loginForm" :rules="rules" ref="loginForm">
+    <el-form :label-position="labelPosition" label-width="80px"
+      :model="loginForm" :rules="rules" ref="loginForm">
       <el-form-item label="账号" prop="email">
         <el-input v-model="loginForm.email" placeholder="请输入登录邮箱"></el-input>
       </el-form-item>
@@ -12,19 +13,15 @@
       <el-form-item label="验证码" style="width: 100%" prop="captcha">
         <el-input style="width: 55%" v-model="loginForm.captcha" placeholder="请输入验证码">
         </el-input>
-        <img :src="captchaSrc"
-          style="width: 40%;height: 42px;border-radius: 4px"
+        <img :src="captchaSrc" class="captcha-class"
           @click="getCaptcha()" alt="图形验证码">
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
         <el-button @click="resetForm('loginForm')">重置</el-button>
+        <el-button type="info"><el-link :underline="false" href="http://127.0.0.1:9000/auth/github">Github登录</el-link></el-button>
       </el-form-item>
     </el-form>
-
-    <a href="http://127.0.0.1:9000/auth/github">
-      <el-button type="success" class="login github_login">Github登录</el-button>
-    </a>
   </div>
 </div>
 </template>
@@ -38,6 +35,7 @@ import { Message, Loading } from 'element-ui';
 export default Vue.extend({
   data() {
     return {
+      labelPosition: 'left',
       loginForm: {
         email: '',
         password: '',
@@ -132,3 +130,23 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+  .captcha-class {
+      width: 40%;
+      height: 40px;
+      border-radius: 4px;
+      float: right;
+  }
+  h1 {
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+  }
+  .el-link.el-link--default {
+    color: $color-white;
+  }
+</style>

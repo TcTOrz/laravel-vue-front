@@ -1,5 +1,6 @@
 <template>
 <div>
+  <h1>register</h1>
   <el-form :model="registerForm" :rules="rules" ref="registerForm" label-width="100px">
     <el-form-item label="账号" prop="name">
       <el-input v-model="registerForm.name" placeholder="请输入用户名"></el-input>
@@ -14,13 +15,12 @@
       <el-input v-model="registerForm.rePassword" type="password" placeholder="请确认密码"></el-input>
     </el-form-item>
     <el-form-item label="验证码" prop="captcha">
-      <el-input v-model="registerForm.captcha" placeholder="请输入验证码"></el-input>
-      <img :src="captchaSrc"
-        style="width: 40%;height: 42px;border-radius: 4px" @click="getCaptcha()" alt="图形验证码">
+      <el-input style="width: 55%"  v-model="registerForm.captcha" placeholder="请输入验证码"></el-input>
+      <img :src="captchaSrc" class="captcha-class" @click="getCaptcha()" alt="图形验证码">
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm('registerForm')">注册</el-button>
-      <el-button type="primary"><router-link to="/login">去登录</router-link></el-button>
+      &nbsp;&nbsp;已注册？<router-link to="/login">去登录</router-link>
     </el-form-item>
   </el-form>
 </div>
@@ -142,3 +142,20 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+  h1 {
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+  }
+  .captcha-class {
+    width: 40%;
+    height: 40px;
+    border-radius: 4px;
+    float: right;
+  }
+</style>

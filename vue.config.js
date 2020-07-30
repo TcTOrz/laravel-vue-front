@@ -1,6 +1,9 @@
 // const { httpProxyMiddlewaer } = require('http-proxy-middleware');
+const path = require('path');
 
 module.exports = {
+  // vue.config.js
+
   // process.env.BASE_API: 'http://127.0.0.1:8080/';
   // lintOnSave: false,
   /* configureWebpack: (config) => {
@@ -32,7 +35,17 @@ module.exports = {
       },
     },
   },
+
   publicPath: process.env.NODE_ENV === 'production'
     ? './' // /water-environment-front/dist
     : '/',
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'scss',
+      patterns: [
+        path.resolve(__dirname, './src/styles/*.scss'), // 导入scss
+      ],
+    },
+  },
 };

@@ -1,22 +1,24 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-29 16:17:32
- * @LastEditTime: 2020-07-29 17:27:43
+ * @LastEditTime: 2020-07-30 15:54:29
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/auth/Login.vue
  * @Motto: MMMMMMMM
 -->
 <template>
-  <div>
+  <div class="login-class">
     <login-component></login-component>
-    没有账号？
-    <router-link to="/register">{{msgRegister}}</router-link>
-    <div style="color: blue; font-size: 20px; cursor:pointer;" @click="clickme()">点我点我</div>
-    <test-component :title="title"></test-component>
-    <transition name="fade">
-      <p style="color: blue; font-size: 30px;" v-if="show">hello</p>
-    </transition>
+    <section>
+      没有账号？
+      <router-link to="/register">{{msgRegister}}</router-link>
+      <div style="color: blue; font-size: 20px; cursor:pointer;" @click="clickme()">点我点我</div>
+      <test-component :title="title"></test-component>
+      <transition name="fade">
+        <p style="color: blue; font-size: 30px;" v-if="show">hello</p>
+      </transition>
+    </section>
   </div>
 </template>
 
@@ -70,5 +72,17 @@ export default class Login extends Vue {
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+  }
+  .login-class {
+    height: 200px;
+  }
+  .login-class::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  section {
+    text-align: center;
   }
 </style>

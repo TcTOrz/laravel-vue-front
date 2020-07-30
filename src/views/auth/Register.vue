@@ -1,16 +1,15 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-30 09:18:02
- * @LastEditTime: 2020-07-30 09:43:07
+ * @LastEditTime: 2020-07-30 15:59:24
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/auth/Register.vue
  * @Motto: MMMMMMMM
 -->
 <template>
-  <div>
+  <div class="register-class">
     <register-component></register-component>
-    <router-link to="/login">去登录</router-link>
   </div>
 </template>
 
@@ -28,3 +27,15 @@ export default class Register extends Vue {}
 //   },
 // });
 </script>
+
+<style lang="scss">
+  .register-class {
+    height: 200px;
+  }
+  .register-class::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+</style>
