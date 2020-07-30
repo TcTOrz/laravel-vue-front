@@ -1,24 +1,26 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-29 16:17:32
- * @LastEditTime: 2020-07-30 15:54:29
+ * @LastEditTime: 2020-07-30 23:12:48
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/views/auth/Login.vue
  * @Motto: MMMMMMMM
 -->
 <template>
-  <div class="login-class">
-    <login-component></login-component>
-    <section>
-      没有账号？
-      <router-link to="/register">{{msgRegister}}</router-link>
-      <div style="color: blue; font-size: 20px; cursor:pointer;" @click="clickme()">点我点我</div>
-      <test-component :title="title"></test-component>
-      <transition name="fade">
-        <p style="color: blue; font-size: 30px;" v-if="show">hello</p>
-      </transition>
-    </section>
+  <div class="login-bg">
+    <div class="login-class">
+      <login-component></login-component>
+      <section>
+        没有账号？
+        <router-link to="/register">{{msgRegister}}</router-link>
+        <div style="color: blue; font-size: 20px; cursor:pointer;" @click="clickme()">点我点我</div>
+        <test-component :title="title"></test-component>
+        <transition name="fade">
+          <p style="color: blue; font-size: 30px;" v-if="show">hello</p>
+        </transition>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -74,15 +76,50 @@ export default class Login extends Vue {
     opacity: 0;
   }
   .login-class {
-    height: 200px;
+    min-width: 230px;
+    max-width: 550px;
+    margin: 0 auto;
+    top: 23%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 2;
   }
   .login-class::before {
     content: '';
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
+    background-image: url(../../assets/login.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    -o-filter: blur(20px);
+    filter: blur(20px);
+    position: absolute;
+    z-index: -1;
+    background-position: center top;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
+  // .login-class::after {
+  //   content: "";
+  //   background: rgba(0, 0, 0, 0.25);
+  // }
   section {
     text-align: center;
+  }
+  .login-bg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url(../../assets/login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
   }
 </style>

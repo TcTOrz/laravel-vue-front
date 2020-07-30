@@ -1,7 +1,7 @@
 <!--
  * @Author: Li Jian
  * @Date: 2020-07-29 15:00:46
- * @LastEditTime: 2020-07-30 15:06:18
+ * @LastEditTime: 2020-07-30 16:42:59
  * @LastEditors: Li Jian
  * @Description:
  * @FilePath: /water-environment-front/src/App.vue
@@ -41,6 +41,13 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%
 }
 
 body {
@@ -48,12 +55,12 @@ body {
   line-height: 1.4em;
   background: #f5f5f5;
   color: #4d4d4d;
-  min-width: 230px;
-  max-width: 550px;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
+  // min-width: 230px;
+  // max-width: 550px;
+  // margin: 0 auto;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+  // font-weight: 300;
 }
 
 </style>
