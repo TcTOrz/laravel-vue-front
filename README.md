@@ -1,4 +1,4 @@
-# water-environment-easy
+# water-environment-front
 
 ## Project setup
 ```
